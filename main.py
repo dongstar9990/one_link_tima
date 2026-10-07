@@ -35,3 +35,20 @@ async def download_redirect(request: Request):
         return RedirectResponse(url=IOS_URL, status_code=302)
     else:
         return RedirectResponse(url=DEFAULT_URL, status_code=302)
+
+
+from urllib.parse import quote
+
+ADJUST_URL = (
+    "https://app.adjust.com/25uy7b61"
+    "?campaign=0610-tinchap-inbox"
+    "&adgroup=0610-tinchap-inbox-page-hành+vi+sở+thích"
+    "&creative=Hành+vi+sở+thích+1"
+)
+# Mã hóa tiếng Việt trong link (hành -> h%C3%A0nh), giữ nguyên : / ? = & + %
+ADJUST_URL_ENCODED = quote(ADJUST_URL, safe=":/?=&+%")
+
+
+@app.get("/api/download_simp")
+async def download_simp():
+    return RedirectResponse(url=ADJUST_URL_ENCODED, status_code=302)
