@@ -25,7 +25,7 @@ async def detect_platform(request: Request) -> str:
         return 'unknown'
 
 
-@app.get('/api/download')
+@app.get('/api/my_tima')
 async def download_redirect(request: Request):
     platform = await detect_platform(request)
 
