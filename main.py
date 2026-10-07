@@ -25,7 +25,7 @@ async def detect_platform(request: Request) -> str:
         return 'unknown'
 
 
-@app.get('/api/my_tima')
+@app.get('/api/my_tima_simp')
 async def download_redirect(request: Request):
     platform = await detect_platform(request)
 
@@ -49,6 +49,6 @@ ADJUST_URL = (
 ADJUST_URL_ENCODED = quote(ADJUST_URL, safe=":/?=&+%")
 
 
-@app.get("/api/download_simp")
+@app.get("/api/my_tima")
 async def download_simp():
     return RedirectResponse(url=ADJUST_URL_ENCODED, status_code=302)
